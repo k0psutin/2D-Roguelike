@@ -1,3 +1,5 @@
+![image](https://github.com/k0psutin/2D-Roguelike/blob/master/2D-Roguelike.png)
+
 # 2D-Roguelike
 
 I wanted to start a bigger project, so i began creating a 2D-roguelike game written with Java. The game uses JavaFX, and all the images i use in the game are with CC0-licence. 
