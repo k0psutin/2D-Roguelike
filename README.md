@@ -26,7 +26,7 @@ I - Show/Close invetory.
 Press the item with your mousebutton to use it.
 
 
-Fyi. So far there is no item drops yet. Player has health potions because i was working on inventory. 
+So far there is no item drops yet. Player has health potions because i was working on inventory. 
 
 
 
