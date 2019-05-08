@@ -21,7 +21,7 @@ D - Right
 U - Up
 S - Down
 
-I - Show/Close invetory.
+I - Show/Close inventory.
 
 Press the item with your mousebutton to use it.
 
