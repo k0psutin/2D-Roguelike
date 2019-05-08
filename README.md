@@ -28,7 +28,6 @@ I - Show/Close inventory.
 Press the item with your mousebutton to use it.
 
 
-So far there is no item drops yet. Player has health potions because i was working on inventory. 
+So far there is no item drops yet. Player has health potions because i was working on inventory.
 
-
-
+Player interactions (combat, etc) is only printed in console atm. My to-do list quite long. ;)
