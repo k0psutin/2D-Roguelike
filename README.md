@@ -10,4 +10,19 @@ This project isn't even close to finish, and everything you see here will propab
 
 Creative criticism is always welcome.
 
+Moving the player.
+
+A - Left
+D - Right
+U - Up
+S - Down
+
+I - Show/Close invetory.
+
+Press the item with your mousebutton to use it.
+
+
+So far there is no item drops yet. Player has health potions because i was working on inventory. 
+
+
 You can get the tileset for your own project from: https://0x72.itch.io/dungeontileset-ii
