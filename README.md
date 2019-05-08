@@ -1,6 +1,6 @@
 # 2D-Roguelike
 
-I wanted to give a shot at creating a 2D-roguelike game written with Java. The game uses JavaFX, and all the images i use in the game are with CC0-licence. 
+I wanted to start a bigger project, so i began creating a 2D-roguelike game written with Java. The game uses JavaFX, and all the images i use in the game are with CC0-licence. 
 
 By creating a more complex project, i wanted to combine things i learned from Helsinki University online programming course.
 
