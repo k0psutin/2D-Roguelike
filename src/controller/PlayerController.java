@@ -122,8 +122,8 @@ public class PlayerController {
                     x++;
             }
             moveTo(dir, x, y, tileSize);
-              System.out.println(player.getScreenLocX());
-              System.out.println(player.getScreenLocY());
+//              System.out.println(player.getScreenLocX());
+//              System.out.println(player.getScreenLocY());
 //            System.out.println("");
 //            System.out.println(player);
         }
