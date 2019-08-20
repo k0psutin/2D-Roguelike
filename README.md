@@ -27,7 +27,13 @@ I - Show/Close inventory.
 
 Press the item with your mousebutton to use it.
 
+Update:
 
-So far there is no item drops yet. Player has health potions because i was working on inventory.
+Added random loot drops for NPC. (Only potions for now.)
 
-Player interactions (combat, etc) is only printed in console atm. My to-do list quite long. ;)
+Added Text UI for player stats. (HP, Mana, Experience, Level)
+
+Added simple combat text to see damage output/input. (red for incoming, white for outgoing.)
+
+
+
