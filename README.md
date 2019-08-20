@@ -29,11 +29,11 @@ Press the item with your mousebutton to use it.
 
 Update:
 
-Added random loot drops for NPC. (Only potions for now.)
+- Added random loot drops for NPC. (Only potions for now.)
 
-Added Text UI for player stats. (HP, Mana, Experience, Level)
+- Added Text UI for player stats. (HP, Mana, Experience, Level)
 
-Added simple combat text to see damage output/input. (red for incoming, white for outgoing.)
+- Added simple combat text to see damage output/input. (red for incoming, white for outgoing.)
 
-
+- Added simple animation to show loots.
 
