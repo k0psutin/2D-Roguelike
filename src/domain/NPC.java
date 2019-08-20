@@ -9,39 +9,18 @@ import utils.Coordinates;
 
 public abstract class NPC {
 
-    private int HP;
-    private int MANA;
-    private int STA;
-    private int STR;
-    private int INT;
-    private int LEVEL;
-    private int DEF;
-    private int DMG;
+    private int HP, MANA, STA, STR, INT, LEVEL, DEF, DMG, experience, gold, locX, locY, range;
     private int maxHP = this.HP;
     private int maxMANA = this.MANA;
 
     public static int baseHP = 25;
     public static int baseMANA = 25;
+    
+    private double mapLocX, mapLocY, screenLocX, screenLocY;
 
-    private int experience;
-
-    private int gold;
-
-    private boolean alive;
-
-    private boolean hostile;
-
-    private int locX;
-
-    private int locY;
-
-    private double mapLocX;
-
-    private double mapLocY;
+    private boolean alive, hostile;
 
     private Node mapNode;
-
-    private int range;
 
     private NPC target;
 
@@ -105,6 +84,22 @@ public abstract class NPC {
         return false;
     }
 
+    public double getScreenLocX() {
+        return screenLocX;
+    }
+
+    public double getScreenLocY() {
+        return screenLocY;
+    }
+
+    public void setScreenLocX(double screenLocX) {
+        this.screenLocX = screenLocX;
+    }
+
+    public void setScreenLocY(double screenLocY) {
+        this.screenLocY = screenLocY;
+    }
+    
     public double getMapLocX() {
         return this.mapLocX;
     }
@@ -185,6 +180,9 @@ public abstract class NPC {
     public void giveLoot() {
     }
 
+    public void getLoot(Item item) {
+    }
+
     public void setGold(int gold) {
         this.gold = gold;
     }
@@ -219,6 +217,12 @@ public abstract class NPC {
 
     public void setSTA(int STA) {
         this.STA = STA;
+        calculateHP();
+    }
+    
+    public void calculateHP() {
+        this.maxHP = this.getSTA() * NPC.baseHP;
+        System.out.println("New max HP is " + this.getMaxHP());
     }
 
     public void setSTR(int STR) {
@@ -317,6 +321,7 @@ public abstract class NPC {
         this.DMG += DMG;
     }
 
+    @Override
     public String toString() {
         return "x: " + getLocX() + " y: " + getLocY() + " Name: " + getName() + " Hostile: " + isHostile();
     }

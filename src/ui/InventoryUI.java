@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ui.InventorySlot;
 
 public class InventoryUI {
 
@@ -30,6 +29,7 @@ public class InventoryUI {
         this.inventory.setWidth(400.0);
         this.inventory.setScene(this.inventoryView);
         this.inventoryView.setOnKeyPressed(event -> {
+            
             if (event.getCode() == KeyCode.I) {
                 this.show();
             }

@@ -33,9 +33,12 @@ public class DungeonGenerator extends GridPane {
     public DungeonGenerator() {
         this.rooms = new ArrayList();
         this.corridors = new ArrayList();
+        
         tileMap = new java.util.LinkedHashMap();
 
         generateDungeon();
+        
+        
 
         dungeonMap = createTileMap();
         dungeonMap.setBackground(new javafx.scene.layout.Background(new BackgroundFill[]{new BackgroundFill(javafx.scene.paint.Color.BLACK, null, null)}));

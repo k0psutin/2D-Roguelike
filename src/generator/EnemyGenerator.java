@@ -3,12 +3,7 @@ package generator;
 import domain.Enemy;
 import domain.NPC;
 import enums.Type;
-import generator.DungeonGenerator;
-import java.util.Set;
-import java.util.function.Consumer;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import utils.Coordinates;
 import utils.Utils;
 

@@ -5,18 +5,14 @@ import domain.ICombat;
 import domain.Inventory;
 import domain.Item;
 import domain.NPC;
-import domain.Potion;
-import enums.Stat;
 import enums.Type;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.function.Consumer;
-import javafx.scene.image.Image;
+import utils.Settings;
 import utils.Utils;
 
 public class Player
-extends NPC
-implements ICombat {
+        extends NPC
+        implements ICombat {
+
     private Inventory inventory = new Inventory();
     private static final int baseEXP = 350;
     private int nextLevel = 350;
@@ -29,12 +25,9 @@ implements ICombat {
         this.setLocY(5);
         this.setDMG(3);
         this.setLEVEL(1);
-        PlayerController.setUpPlayer((Player)this);
-        this.playerInventory().addItem((Item)new Potion("health", new Image("file:src/images/items/potions/flask_big_red.png"), "Small Potion of ", Stat.HP, 20));
-        this.playerInventory().addItem((Item)new Potion("health", new Image("file:src/images/items/potions/flask_big_red.png"), "Small Potion of ", Stat.HP, 20));
-        this.playerInventory().addItem((Item)new Potion("health", new Image("file:src/images/items/potions/flask_big_red.png"), "Small Potion of ", Stat.HP, 20));
-        this.playerInventory().addItem((Item)new Potion("health", new Image("file:src/images/items/potions/flask_big_red.png"), "Small Potion of ", Stat.HP, 20));
-        this.playerInventory().addItem((Item)new Potion("health", new Image("file:src/images/items/potions/flask_big_red.png"), "Small Potion of ", Stat.HP, 20));
+        this.setScreenLocX(this.getLocX() * Settings.TILESIZE);
+        this.setScreenLocY(this.getLocY() * Settings.TILESIZE);
+        PlayerController.setUpPlayer((Player) this);
     }
 
     public void pickUpItem(Item item) {
@@ -42,7 +35,7 @@ implements ICombat {
     }
 
     public void useItem(Item item) {
-        if (this.inventory.equals((Object)item)) {
+        if (this.inventory.equals((Object) item)) {
             this.inventory.getInventory().forEach(object -> object.useItem(this));
         }
     }
@@ -56,10 +49,20 @@ implements ICombat {
     public void attack(NPC target) {
         if (this.getTarget() == null | this.getTarget().isAlive()) {
             int dmg = this.calcDMG();
+            CombatText combatText = new CombatText(String.valueOf(dmg), "WHITE", this.getScreenLocX(), this.getScreenLocY());
             System.out.println("You hit " + this.getTarget().getName() + " for " + dmg + " dmg.");
             this.getTarget().takeDMG(dmg);
         } else {
             System.out.println(this.getTarget().getName() + " is dead already!");
+        }
+    }
+
+    @Override
+    public void getLoot(Item item) {
+        if (item.checkStackSize()) {
+            this.inventory.addItem(item);
+        } else {
+            System.out.println("Can't have more of those.");
         }
     }
 
@@ -74,7 +77,10 @@ implements ICombat {
 
     public void takeDMG(int amount) {
         this.setHP(this.getHP() - (amount -= this.calcRES()));
-        System.out.println(this.getTarget().getName() + " hits you for " + amount + " dmg.");
+        if (this.getTarget() != null) {
+            CombatText combatText = new CombatText(String.valueOf(amount), "RED", this.getScreenLocX() + 16, this.getScreenLocY());
+            System.out.println(this.getTarget().getName() + " hits you for " + amount + " dmg.");
+        }
         if (this.getHP() <= 0) {
             this.die();
         }
@@ -90,7 +96,7 @@ implements ICombat {
     }
 
     public int calcDMG() {
-        return Math.abs(Utils.randomize((int)(this.getDMG() + this.getSTR()), (int)this.getDMG()));
+        return Math.abs(Utils.randomize((int) (this.getDMG() + this.getSTR()), (int) this.getDMG()));
     }
 
     public String toString() {
@@ -102,7 +108,7 @@ implements ICombat {
         System.out.println("Leveling up!");
         System.out.println("Old stats: ");
         System.out.println("STR: " + this.getSTR() + " STA: " + this.getSTA() + " INT: " + this.getINT() + " DMG: " + this.getDMG());
-        int nextLevel = (int)Math.floor(350.0 * ((double)this.getLEVEL() * 1.5));
+        int nextLevel = (int) Math.floor(350.0 * ((double) this.getLEVEL() * 1.5));
         this.setNextLevel(this.getNextLevel() + nextLevel);
         this.increaseStats();
         System.out.println("");

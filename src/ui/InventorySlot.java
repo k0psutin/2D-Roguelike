@@ -12,8 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class InventorySlot
-        extends HBox {
+public class InventorySlot extends HBox {
 
     private Item item;
     private final Font font = new Font("Arial", 20.0);
@@ -42,6 +41,7 @@ public class InventorySlot
         this.setOnMouseClicked(use -> {
             item.useItem(PlayerController.player);
             Inventory.inventoryUI.updateInventory();
+            PlayerController.updatePlayerStats();
         });
     }
 

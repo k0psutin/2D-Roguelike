@@ -13,33 +13,38 @@ public class Inventory {
 
     public Inventory() {
         inventory = new ArrayList<Item>();
+        inventoryUI = new InventoryUI();
     }
 
     public void addItem(Item item) {
+        System.out.println("Item: " + item + " being evaluated.");
         if (item != null) {
-            if (!inventory.contains(item)) {
-                inventory.add(item);
+            if (!this.inventory.contains(item)) {
+                System.out.println("Added item: " + item);
+                this.inventory.add(item);
             } else {
-                inventory.forEach(items -> items.setStackSize(items.getStackSize() + 1));
+                this.inventory.forEach(items -> {
+                    if (items.equals(item)) {
+                        System.out.println("Item: " + item + " already in inventory, adding stack.");
+                        items.growStackSize();
+                    }
+                });
             }
         }
     }
 
     public void removeItem(Item item) {
-        if (inventory.contains(item)) {
-            inventory.remove(item);
+        if (this.inventory.contains(item)) {
+            this.inventory.remove(item);
         }
     }
 
     public List<Item> getInventory() {
-        return inventory;
+        return this.inventory;
     }
 
     public int getInventorySize() {
         return inventory.size();
     }
 
-    static {
-        inventoryUI = new InventoryUI();
-    }
 }

@@ -16,10 +16,12 @@ public abstract class Item {
     private int maxStackSize;
     private Player player = PlayerController.player;
 
-    public Item(String name, Image image, Stat stat) {
+    public Item(String name, Image image, Stat stat, int maxStackSize) {
         this.name = name;
         this.image = image;
         this.stat = stat;
+        this.maxStackSize = maxStackSize;
+        this.stackSize = 1;
     }
 
     public Stat getStat() {
@@ -62,12 +64,20 @@ public abstract class Item {
         this.maxStackSize = maxStackSize;
     }
 
-    public void setStackSize(int stackSize) {
-        if (this.stackSize != this.maxStackSize) {
-            this.stackSize = stackSize;
+    public void reduceStackSize() {
+        this.stackSize--;
+    }
+
+    public void growStackSize() {
+        if (this.checkStackSize()) {
+            this.stackSize++;
         } else {
-            System.out.println("You can't have more of these items.");
+            System.out.println("Can't have more of those..");
         }
+    }
+
+    public boolean checkStackSize() {
+        return this.stackSize != maxStackSize;
     }
 
     public int getStackSize() {
@@ -111,6 +121,7 @@ public abstract class Item {
         return this.node;
     }
 
+    @Override
     public String toString() {
         return this.name;
     }
@@ -119,17 +130,19 @@ public abstract class Item {
         return this;
     }
 
+    @Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.name);
-        hash = 11 * hash + Objects.hashCode(this.image);
-        hash = 11 * hash + Objects.hashCode(this.node);
-        hash = 11 * hash + Objects.hashCode(this.stat);
-        hash = 11 * hash + this.stackSize;
-        hash = 11 * hash + this.maxStackSize;
+        hash = 23 * hash + Objects.hashCode(this.name);
+        hash = 23 * hash + Objects.hashCode(this.image);
+        hash = 23 * hash + Objects.hashCode(this.node);
+        hash = 23 * hash + Objects.hashCode(this.stat);
+        hash = 23 * hash + this.stackSize;
+        hash = 23 * hash + this.maxStackSize;
         return hash;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -140,7 +153,7 @@ public abstract class Item {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Item other = (Item) obj;
+        final Item other = (Item) obj;
         if (this.stackSize != other.stackSize) {
             return false;
         }
@@ -161,4 +174,8 @@ public abstract class Item {
         }
         return true;
     }
+
+    
+
+    
 }
