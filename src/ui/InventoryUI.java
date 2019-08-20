@@ -57,7 +57,7 @@ public class InventoryUI {
             Inventory.inventory.forEach(item -> this.inventoryPanel.getChildren().add(new InventorySlot(item)));
         }
     }
-
+    
     public void show() {
         if (this.active) {
             this.getStage().close();

@@ -1,11 +1,9 @@
 package domain;
 
 import controller.PlayerController;
-import domain.ICombat;
-import domain.Inventory;
-import domain.Item;
-import domain.NPC;
 import enums.Type;
+import ui.LootAnimation;
+import ui.TextAnimations;
 import utils.Settings;
 import utils.Utils;
 
@@ -32,6 +30,7 @@ public class Player
 
     public void pickUpItem(Item item) {
         this.inventory.addItem(item);
+        
     }
 
     public void useItem(Item item) {
@@ -49,7 +48,7 @@ public class Player
     public void attack(NPC target) {
         if (this.getTarget() == null | this.getTarget().isAlive()) {
             int dmg = this.calcDMG();
-            CombatText combatText = new CombatText(String.valueOf(dmg), "WHITE", this.getScreenLocX(), this.getScreenLocY());
+            TextAnimations combatText = new TextAnimations(String.valueOf(dmg), "WHITE", this.getScreenLocX(), this.getScreenLocY());
             System.out.println("You hit " + this.getTarget().getName() + " for " + dmg + " dmg.");
             this.getTarget().takeDMG(dmg);
         } else {
@@ -61,6 +60,7 @@ public class Player
     public void getLoot(Item item) {
         if (item.checkStackSize()) {
             this.inventory.addItem(item);
+            LootAnimation lootAnim = new LootAnimation(item, this.getScreenLocX(), this.getScreenLocY());
         } else {
             System.out.println("Can't have more of those.");
         }
@@ -78,7 +78,7 @@ public class Player
     public void takeDMG(int amount) {
         this.setHP(this.getHP() - (amount -= this.calcRES()));
         if (this.getTarget() != null) {
-            CombatText combatText = new CombatText(String.valueOf(amount), "RED", this.getScreenLocX() + 16, this.getScreenLocY());
+            TextAnimations combatText = new TextAnimations(String.valueOf(amount), "RED", this.getScreenLocX() + 16, this.getScreenLocY());
             System.out.println(this.getTarget().getName() + " hits you for " + amount + " dmg.");
         }
         if (this.getHP() <= 0) {
